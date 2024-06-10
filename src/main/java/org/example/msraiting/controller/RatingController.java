@@ -1,6 +1,7 @@
 package org.example.msraiting.controller;
 
-import org.example.msraiting.dao.entity.Rating;
+import org.example.msraiting.dto.RatingDTO;
+import org.example.msraiting.dto.RatingRequestDTO;
 import org.example.msraiting.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,20 +21,20 @@ public class RatingController {
     private RatingService ratingService;
 
     @PostMapping
-    public ResponseEntity<Rating> addRating(@RequestBody Rating rating) {
-        Rating savedRating = ratingService.addRating(rating);
+    public ResponseEntity<RatingDTO> addRating(@RequestBody RatingRequestDTO ratingRequestDTO) {
+        RatingDTO savedRating = ratingService.addRating(ratingRequestDTO);
         return ResponseEntity.ok(savedRating);
     }
 
     @GetMapping("/product/{productId}")
-    public ResponseEntity<List<Rating>> getRatingsByProductId(@PathVariable Long productId) {
-        List<Rating> ratings = ratingService.getRatingsByProductId(productId);
+    public ResponseEntity<List<RatingDTO>> getRatingsByProductId(@PathVariable Long productId) {
+        List<RatingDTO> ratings = ratingService.getRatingsByProductId(productId);
         return ResponseEntity.ok(ratings);
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Rating>> getRatingsByUserId(@PathVariable Long userId) {
-        List<Rating> ratings = ratingService.getRatingsByUserId(userId);
+    public ResponseEntity<List<RatingDTO>> getRatingsByUserId(@PathVariable Long userId) {
+        List<RatingDTO> ratings = ratingService.getRatingsByUserId(userId);
         return ResponseEntity.ok(ratings);
     }
 

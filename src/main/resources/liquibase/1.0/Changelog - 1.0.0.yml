@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create rating table
+      author: Huseyn
+      changes:
+        - createTable:
+            tableName: rating
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: productId
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: userId
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rating
+                  type: bigint
+                  constraints:
+                    nullable: false
